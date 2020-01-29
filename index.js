@@ -20,6 +20,7 @@ app.use(
     })
 );
 
+// Passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
 
