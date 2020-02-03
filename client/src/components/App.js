@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import { connect } from "react-redux";
-import * as actions from "../actions";
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-import Header from "./Header";
-import Landing from "./Landing";
+import Header from './Header';
+import Landing from './Landing';
+import Dashboard from './Dashboard';
 
-const Dashboard = () => <h2>Dashboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;
 
 class App extends Component {
@@ -22,7 +22,11 @@ class App extends Component {
                         <Header />
                         <Route path="/" exact component={Landing} />
                         <Route path="/surveys" exact component={Dashboard} />
-                        <Route path="/surveys/new" component={SurveyNew} />
+                        <Route
+                            path="/surveys/new"
+                            exact
+                            component={SurveyNew}
+                        />
                     </div>
                 </BrowserRouter>
             </div>
