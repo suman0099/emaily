@@ -8,7 +8,10 @@ require('./models/User');
 require('./models/Survey');
 require('./services/passport');
 
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 const app = express();
 
@@ -27,7 +30,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
-require('./routes/surveyRoutes')(app);
+app.use(require('./routes/surveyRoutes'));
 
 if (process.env.NODE_ENV === 'production') {
     // Express will serve up production assets
@@ -41,8 +44,6 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 }
-
-console.log(process.env.NODE_ENV);
 
 const PORT = process.env.PORT || 5000;
 
