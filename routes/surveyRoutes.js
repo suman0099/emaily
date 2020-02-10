@@ -15,6 +15,12 @@ router.get('/api/surveys/:surveyId/:choice', (req, res) => {
     res.send('Thanks for your feedback');
 });
 
+router.get('/api/surveys', async (req, res) => {
+    const surveys = await Survey.find({ _user: req.user.id }).select({
+        recipients: false
+    });
+});
+
 router.post('/api/surveys/webhooks', (req, res) => {
     const p = new Path('/api/surveys/:surveyId/:choice');
 
